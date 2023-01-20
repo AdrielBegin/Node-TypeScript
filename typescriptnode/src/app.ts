@@ -5,6 +5,7 @@ import routes from './routes';
 
 class App {
     public express: express.Application
+    
     constructor (){
         this.express = express()
         this.middlewares()
@@ -16,8 +17,11 @@ class App {
         this.express.use(cors())
     }
 
-    private database(): void {
-        mongoose.connect("mongodb://localhost:27017/typescriptnode")    
+    private database(): void {     
+            
+        mongoose.set("strictQuery", true);        
+        mongoose.connect('mongodb://localhost:27017/typescriptnode');
+            
     }
     private routes(): void {
         this.express.use(routes)
